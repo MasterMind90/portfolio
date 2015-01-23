@@ -1,11 +1,11 @@
 <?php
-App::uses('MediaController', 'Controller');
+App::uses('GroupsController', 'Controller');
 
 /**
- * MediaController Test Case
+ * GroupsController Test Case
  *
  */
-class MediaControllerTest extends ControllerTestCase {
+class GroupsControllerTest extends ControllerTestCase {
 
 /**
  * Fixtures
@@ -13,8 +13,8 @@ class MediaControllerTest extends ControllerTestCase {
  * @var array
  */
 	public $fixtures = array(
-		'app.media',
-		'app.group'
+		'app.group',
+		'app.media'
 	);
 
 /**

@@ -1,6 +1,5 @@
 <?php
 App::uses('AppController', 'Controller');
-App::uses('File', 'Utility');
 /**
  * Media Controller
  *
@@ -29,22 +28,18 @@ class MediaController extends AppController {
  *
  * @return void
  */
-	public function beforeFilter(){
-		parent::beforeFilter();
-		$this->Auth->allow('index');
-	}
-
-	public function index() {
+	public function index($id) {
 		$flag=false; 
 		if ( !empty($this->getAuth()) ){
 			$flag = true; 
 		}
 		$this->set('flag',$flag);
-		
-		$this->Paginator->settings = array('limit' => 150);
-		$this->Media->recursive = 0;
 
-		$this->set('medias', $this->Paginator->paginate());
+		$this->Media->recursive = 0;
+		$photos = $this->Media->find('all',array('conditions'=>array('Media.group_id'=>$id)));
+		$this->debugs($photos);
+		$this->debugs($this->Paginator->paginate());
+		$this->set('medias', $photos);
 	}
 
 /**
@@ -69,17 +64,16 @@ class MediaController extends AppController {
  */
 	public function add() {
 		if ($this->request->is('post')) {
-			$this->debugs($this->request->data);
-			//exit();
-
 			$this->Media->create();
-			if ($this->Media->save($this->request->data['Media'])) {
-				$this->Session->setFlash(__('The media has been saved.'),'flash.success');
+			if ($this->Media->save($this->request->data)) {
+				$this->Session->setFlash(__('The media has been saved.'));
 				return $this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The media could not be saved. Please, try again.'),'flash.error');
+				$this->Session->setFlash(__('The media could not be saved. Please, try again.'));
 			}
 		}
+		$groups = $this->Media->Group->find('list');
+		$this->set(compact('groups'));
 	}
 
 /**
@@ -95,15 +89,17 @@ class MediaController extends AppController {
 		}
 		if ($this->request->is(array('post', 'put'))) {
 			if ($this->Media->save($this->request->data)) {
-				$this->Session->setFlash(__('The media has been saved.'),'flash.success');
+				$this->Session->setFlash(__('The media has been saved.'));
 				return $this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The media could not be saved. Please, try again.'),'flash.error');
+				$this->Session->setFlash(__('The media could not be saved. Please, try again.'));
 			}
 		} else {
 			$options = array('conditions' => array('Media.' . $this->Media->primaryKey => $id));
 			$this->request->data = $this->Media->find('first', $options);
 		}
+		$groups = $this->Media->Group->find('list');
+		$this->set(compact('groups'));
 	}
 
 /**
@@ -119,19 +115,10 @@ class MediaController extends AppController {
 			throw new NotFoundException(__('Invalid media'));
 		}
 		$this->request->onlyAllow('post', 'delete');
-		
-		$media_path = $this->Media->find('first',array('conditions'=>array('id'=>$id),'fields'=>'media_path'));
-
-		//$this->debugs($media_path);exit();
-
-		$file = new File(WWW_ROOT . 'img/'. $media_path['Media']['media_path'], false, 0777);
-		
-
-		if ($this->Media->delete() && $file->delete() ) {
-			$this->Session->setFlash(__('The media has been deleted.'),'flash.success');
+		if ($this->Media->delete()) {
+			$this->Session->setFlash(__('The media has been deleted.'));
 		} else {
-			$this->Session->setFlash(__('The media could not be deleted. Please, try again.'),'flash.error');
+			$this->Session->setFlash(__('The media could not be deleted. Please, try again.'));
 		}
 		return $this->redirect(array('action' => 'index'));
-	}
-}
+	}}

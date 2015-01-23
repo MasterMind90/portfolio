@@ -193,14 +193,14 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 
 								
 									<?php 
-									if($this->params['controller'] == 'media') { 
+									if($this->params['controller'] == 'groups') { 
 										echo '<li class="active drop">';
 									}
 									else{
 										echo '<li class="drop">';
 									}
 
-									echo $this->Html->link('Gallary',array('controller'=>'media','action'=>'index'));
+									echo $this->Html->link('Gallary',array('controller'=>'groups','action'=>'index'));
 								?>
 
 									

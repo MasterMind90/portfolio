@@ -1,9 +1,9 @@
 <?php
 /**
- * FolderFixture
+ * GroupFixture
  *
  */
-class FolderFixture extends CakeTestFixture {
+class GroupFixture extends CakeTestFixture {
 
 /**
  * Fields
@@ -12,7 +12,7 @@ class FolderFixture extends CakeTestFixture {
  */
 	public $fields = array(
 		'id' => array('type' => 'integer', 'null' => false, 'default' => null, 'key' => 'primary'),
-		'folder_name' => array('type' => 'string', 'null' => false, 'default' => null, 'length' => 256, 'collate' => 'latin1_swedish_ci', 'charset' => 'latin1'),
+		'group_name' => array('type' => 'string', 'null' => false, 'default' => null, 'length' => 256, 'collate' => 'latin1_swedish_ci', 'charset' => 'latin1'),
 		'modified' => array('type' => 'datetime', 'null' => false, 'default' => null),
 		'created' => array('type' => 'datetime', 'null' => false, 'default' => null),
 		'indexes' => array(
@@ -29,9 +29,9 @@ class FolderFixture extends CakeTestFixture {
 	public $records = array(
 		array(
 			'id' => 1,
-			'folder_name' => 'Lorem ipsum dolor sit amet',
-			'modified' => '2015-01-22 22:09:37',
-			'created' => '2015-01-22 22:09:37'
+			'group_name' => 'Lorem ipsum dolor sit amet',
+			'modified' => '2015-01-22 22:51:17',
+			'created' => '2015-01-22 22:51:17'
 		),
 	);
 

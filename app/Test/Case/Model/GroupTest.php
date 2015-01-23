@@ -1,11 +1,11 @@
 <?php
-App::uses('Media', 'Model');
+App::uses('Group', 'Model');
 
 /**
- * Media Test Case
+ * Group Test Case
  *
  */
-class MediaTest extends CakeTestCase {
+class GroupTest extends CakeTestCase {
 
 /**
  * Fixtures
@@ -13,8 +13,8 @@ class MediaTest extends CakeTestCase {
  * @var array
  */
 	public $fixtures = array(
-		'app.media',
-		'app.group'
+		'app.group',
+		'app.media'
 	);
 
 /**
@@ -24,7 +24,7 @@ class MediaTest extends CakeTestCase {
  */
 	public function setUp() {
 		parent::setUp();
-		$this->Media = ClassRegistry::init('Media');
+		$this->Group = ClassRegistry::init('Group');
 	}
 
 /**
@@ -33,7 +33,7 @@ class MediaTest extends CakeTestCase {
  * @return void
  */
 	public function tearDown() {
-		unset($this->Media);
+		unset($this->Group);
 
 		parent::tearDown();
 	}
