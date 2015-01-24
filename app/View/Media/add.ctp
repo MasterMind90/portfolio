@@ -11,6 +11,7 @@
 <div class="col-md-8">
 	<?php
 		echo $this->Form->input('media_path',array('type'=>'file','style'=>'width:100%;','label' => false));
+		echo $this->Form->input('group_id',array('type'=>'hidden','value'=>$id));
 	?>
 </div>
 </div>

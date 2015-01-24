@@ -28,6 +28,11 @@ class MediaController extends AppController {
  *
  * @return void
  */
+	public function beforeFilter(){
+		parent::beforeFilter();
+		$this->Auth->allow('index');
+	}
+
 	public function index($id) {
 		$flag=false; 
 		if ( !empty($this->getAuth()) ){
@@ -35,11 +40,19 @@ class MediaController extends AppController {
 		}
 		$this->set('flag',$flag);
 
-		$this->Media->recursive = 0;
+		$this->Media->recursive = -1;
 		$photos = $this->Media->find('all',array('conditions'=>array('Media.group_id'=>$id)));
-		$this->debugs($photos);
-		$this->debugs($this->Paginator->paginate());
+		//$this->debugs($photos);
+
+
+		$group = $this->Media->Group->find('first',array('conditions'=>array('Group.id'=>$id),'fields'=>'group_name'));
+		$group = $group['Group'];
+		//$this->debugs($group);
+
+
+		
 		$this->set('medias', $photos);
+		$this->set('group', $group);
 	}
 
 /**
@@ -62,18 +75,20 @@ class MediaController extends AppController {
  *
  * @return void
  */
-	public function add() {
+	public function add($id) {
 		if ($this->request->is('post')) {
+			$data = $this->request->data;
+
 			$this->Media->create();
 			if ($this->Media->save($this->request->data)) {
-				$this->Session->setFlash(__('The media has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+				$this->Session->setFlash(__('The media has been saved.'),'flash.success');
+				return $this->redirect(array('action' => 'index',$data['Media']['group_id']));
 			} else {
-				$this->Session->setFlash(__('The media could not be saved. Please, try again.'));
+				$this->Session->setFlash(__('The media could not be saved. Please, try again.'),'flash.error');
 			}
 		}
-		$groups = $this->Media->Group->find('list');
-		$this->set(compact('groups'));
+
+		$this->set('id',$id);
 	}
 
 /**
@@ -116,9 +131,10 @@ class MediaController extends AppController {
 		}
 		$this->request->onlyAllow('post', 'delete');
 		if ($this->Media->delete()) {
-			$this->Session->setFlash(__('The media has been deleted.'));
+			$this->Session->setFlash(__('The media has been deleted.'),'flash.success');
 		} else {
-			$this->Session->setFlash(__('The media could not be deleted. Please, try again.'));
+			$this->Session->setFlash(__('The media could not be deleted. Please, try again.'),'flash.error');
 		}
-		return $this->redirect(array('action' => 'index'));
-	}}
+		return $this->redirect($this->referer());
+	}
+}

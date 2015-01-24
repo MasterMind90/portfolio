@@ -33,6 +33,7 @@
 						<?php foreach($groups as $group){ ?>
 
 							<li class="class1">
+								<?php if ($flag){ ?>
 								<center>
 									<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $group['Group']['id'])); ?>
 									&nbsp;&nbsp;&nbsp;
@@ -40,6 +41,7 @@
 									
 									 
 								</center>
+								<?php } ?>
 								<div class="service-item">
 								<?php echo $this->Html->link('<i class="fa fa-folder"></i>',array('controller'=>'media','action'=>'index',$group['Group']['id']),array('escape'=>false)); ?>
 									<h1><?php echo $group['Group']['group_name']; ?></h1>

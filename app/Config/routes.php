@@ -36,6 +36,7 @@
 	Router::connect('/patent', array('controller' => 'settings', 'action' => 'patent'));
 	Router::connect('/contact', array('controller' => 'settings', 'action' => 'contact'));
 	Router::connect('/loginAuth', array('controller' => 'users', 'action' => 'login'));
+	Router::connect('/directory', array('controller' => 'groups', 'action' => 'index'));
 
 /**
  * Load all plugin routes. See the CakePlugin documentation on

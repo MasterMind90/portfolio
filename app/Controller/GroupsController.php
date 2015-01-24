@@ -28,6 +28,11 @@ class GroupsController extends AppController {
  *
  * @return void
  */
+	public function beforeFilter(){
+		parent::beforeFilter();
+		$this->Auth->allow('index');
+	}
+	
 	public function index() {
 		$flag=false; 
 		if ( !empty($this->getAuth()) ){
