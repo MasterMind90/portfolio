@@ -39,7 +39,8 @@ class SettingsController extends AppController {
 
 	public function home(){
 		$flag=false; 
-		if ( !empty($this->getAuth()) ){
+		$user = $this->getAuth();
+		if ( !empty($user) ){
 			$flag = true; 
 		}
 		$this->set('flag',$flag);
@@ -72,7 +73,8 @@ class SettingsController extends AppController {
 
 	public function contact(){
 		$flag=false; 
-		if ( !empty($this->getAuth()) ){
+		$user = $this->getAuth();
+		if ( !empty($user) ){
 			$flag = true; 
 		}
 		$this->set('flag',$flag);

@@ -35,7 +35,8 @@ class ChaptersController extends AppController {
 	
 	public function index() {
 		$flag=false; 
-		if ( !empty($this->getAuth()) ){
+		$user = $this->getAuth();
+		if ( !empty($user) ){
 			$flag = true; 
 		}
 		$this->set('flag',$flag);

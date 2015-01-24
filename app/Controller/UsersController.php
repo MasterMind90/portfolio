@@ -50,8 +50,10 @@ class UsersController extends AppController {
  */
 	public function index() {
 		//$this->debugs($this->getAuth());
-		
-		if ( !empty($this->getAuth()) && $this->getAuth()['role'] == 'admin' ){
+		$value = $this->getAuth(); 
+		$value = $value['role'];
+		$user = $this->getAuth();
+		if ( !empty($user) && $value == 'admin' ){
 			$this->Paginator->settings = array('limit' => 150);
 			$this->User->recursive = 0;
 			$this->set('users', $this->Paginator->paginate());
@@ -99,7 +101,10 @@ class UsersController extends AppController {
  * @return void
  */
 	public function edit($id = null) {
-		if ( !empty($this->getAuth()) && $this->getAuth()['role'] == 'admin' ){
+		$value = $this->getAuth(); 
+		$value = $value['role'];
+		$user = $this->getAuth();
+		if ( !empty($user) && $value == 'admin' ){
 			if (!$this->User->exists($id)) {
 				throw new NotFoundException(__('Invalid user'));
 			}
@@ -126,7 +131,10 @@ class UsersController extends AppController {
  * @return void
  */
 	public function delete($id = null) {
-		if ( !empty($this->getAuth()) && $this->getAuth()['role'] == 'admin' ){
+		$value = $this->getAuth(); 
+		$value = $value['role'];
+		$user = $this->getAuth();
+		if ( !empty($user) && $value == 'admin' ){
 			$this->User->id = $id;
 			if (!$this->User->exists()) {
 				throw new NotFoundException(__('Invalid user'));

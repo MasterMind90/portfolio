@@ -2,7 +2,7 @@
 			<h3><?php echo $this->Html->link(__('<-- Back'),array('controller'=>'groups')); ?> </h3> <br/>
 			<?php if ($flag) { ?>
 			<div class="actions">
-				<h3><?php echo __('Add Media To '.$group['group_name']); ?> </h3> <br/>
+				<h3><?php echo __('Add Media To '); echo $this->Html->link($group['group_name'],array('controller'=>'groups')); ?> </h3> <br/>
 				<ul>
 					<li><?php echo $this->Html->link(__('New Media'), array('action' => 'add',$group['id']),array('style'=>'font-size:150%')); ?></li>
 				</ul>
