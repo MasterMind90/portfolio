@@ -8,7 +8,7 @@
 </div>
 <div class="col-md-8">
 	<?php
-		echo $this->Form->input('username',array('style'=>'width:100%;','label' => false));
+		echo $this->Form->input('username',array('style'=>'width:100%;color:black;font-size: 150%;','label' => false));
 	?>
 </div>
 </div>
@@ -19,7 +19,7 @@
 </div>
 <div class="col-md-8">
 	<?php
-		echo $this->Form->input('password',array('style'=>'width:100%;','label' => false));
+		echo $this->Form->input('password',array('style'=>'width:100%;color:black;font-size: 150%;','label' => false));
 	?>
 </div>
 </div>

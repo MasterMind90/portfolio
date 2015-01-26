@@ -8,7 +8,7 @@
 						</div>
 
 						<div class="col-md-8">
-							<input type="text" placeholder="Title1" name="data[Setting][contact_title]" value="<?php echo $settings['contact_title']; ?>" style="width:100%;">
+							<input type="text" placeholder="Title1" name="data[Setting][contact_title]" value="<?php echo $settings['contact_title']; ?>" style="width:100%;color:black;font-size: 150%;">
 						</div>
 					</div>
 					<div class="row">
@@ -25,7 +25,7 @@
 							<h1 class="main-title">Title 2</h1>
 						</div>
 						<div class="col-md-8">
-							<input type="text" placeholder="Title1" name="data[Setting][contact_second_title]" value="<?php echo $settings['contact_second_title']; ?>" style="width:100%;">
+							<input type="text" placeholder="Title1" name="data[Setting][contact_second_title]" value="<?php echo $settings['contact_second_title']; ?>" style="width:100%;color:black;font-size: 150%;">
 						</div>
 					</div>
 					<div class="row">

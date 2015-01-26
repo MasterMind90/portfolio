@@ -1,6 +1,6 @@
 <div class="users index">
 	<div class="actions">
-		<h3><?php echo __('Actions'); ?></h3>
+		<h3><?php echo __('Actions'); ?></h3> <br/>
 		<ul>
 			<li><?php echo $this->Html->link(__('New User'), array('action' => 'add')); ?></li>
 		</ul>

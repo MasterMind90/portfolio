@@ -167,8 +167,12 @@ class SettingsController extends AppController {
 		$settings = $this->Setting->find(); 
 		//$this->debugs($settings);
 		if ( $this->request->is('post')){
+			$data = $this->request->data; 
+			if ( empty($data['Setting']['settings_photo']['name']) ) {
+				unset($data['Setting']['settings_photo']);
+			}
 			$this->Setting->id = $settings['Setting']['settings_id'];
-			$this->Setting->save($this->request->data);
+			$this->Setting->save($data);
 			return $this->redirect(array('action'=>'home'));
 		}
 		$this->set('settings',$settings['Setting']);
